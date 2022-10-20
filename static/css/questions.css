@@ -1,0 +1,29 @@
+.question, .answer {
+	margin-top: 20px;
+	padding: 20px;
+	border: 1px solid #222222;
+	border-radius: 8px;
+}
+
+.question-block {
+	position: relative;
+}
+
+.question-footer, .answer-footer {
+	position: absolute;
+	bottom: 0;
+}
+
+.avatar {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

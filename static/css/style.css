@@ -1,0 +1,14 @@
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+.main-container {
+	margin-top: 100px;
+	margin-bottom: 80px;
+}
+
+.page-name {
+	margin-bottom: 40px;
+}

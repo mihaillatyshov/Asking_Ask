@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Question</title>
+
+	<link href="../static/css/bootstrap.css" rel="stylesheet">
+	<link href="../static/css/style.css" rel="stylesheet">
+	<link href="../static/css/questions.css" rel="stylesheet">
+	<link href="../static/css/single-question.css" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column h-100">
+	<header>
+		<nav class="navbar navbar-dark bg-dark fixed-top">
+			<div class="container">
+				<div
+					class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 w-100">
+					<a href="./index.html"
+						class="d-flex align-items-center col-12 col-md-3 text-white text-decoration-none">
+						<img src="../static/img/main.png" height="40px" alt="home" />
+						<span class="ms-4 navbar-brand">Asking Ask</span>
+					</a>
+
+					<div class="col-12 col-md-3 text-end">
+						<form class="d-flex" role="search">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+						</form>
+					</div>
+					<div class="col-12 col-md-auto justify-content-center">
+						<a href="./new_question.html"> <button class="btn btn-primary">ASK!!!</button></a>
+					</div>
+					<ul class="nav col-12 col-md-auto justify-content-center">
+						<li><a href="./login.html" class="nav-link px-2 text-white">LogIn</a></li>
+						<li><a href="./register.html" class="nav-link px-2 text-white">Register</a></li>
+					</ul>
+					<!-- 
+					<div class="nav col-12 col-md-auto justify-content-center">
+						<a href="#">
+							<img src="../static/img/avatar.png" height="40px" alt="Profile Icon">
+						</a>
+					</div>
+					-->
+
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<div class="container main-container">
+			<div class="row">
+				<div class="col-8">
+					<div class="question-full">
+						<div class="row">
+							<div class="col-2">
+								<div class="avatar">
+									<img src="../static/img/avatar-1.png" alt="" />
+								</div>
+								<div>
+									<input type="number" value="256" min="-1000000" max="1000000" step="1">
+								</div>
+							</div>
+							<div class="col-10 question-block ps-5 pb-5">
+								<h3>What is C++?</h3>
+								<div>
+									Hey guys, I want to learn C++!!!
+									But I don't know what does it mean(((
+								</div>
+								<div class="question-footer">
+									Tags:
+									<a class="mx-2" href="#">C++</a>
+									<a href="#">C</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="question">
+						<div class="row">
+							<div class="col-2">
+								<div class="avatar">
+									<img src="../static/img/avatar-4.png" alt="" />
+								</div>
+								<div>
+									<input type="number" value="-13" min="-1000000" max="1000000" step="1">
+								</div>
+							</div>
+							<div class="col-10 question-block ps-5 pb-5">
+								<div>
+									Just use python. lol 
+								</div>
+								<div class="answer-footer mt-4">
+									<input class="form-check-input" type="checkbox" value="" id="checkCorrect1">
+									<label class="form-check-label" for="checkCorrect1">
+										Correect!
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="question">
+						<div class="row">
+							<div class="col-2">
+								<div class="avatar">
+									<img src="../static/img/avatar-4.png" alt="" />
+								</div>
+								<div>
+									<input type="number" value="-13" min="-1000000" max="1000000" step="1">
+								</div>
+							</div>
+							<div class="col-10 question-block ps-5 pb-5">
+								<div>
+									Just use python. lol 
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, sequi voluptatibus!
+									Vitae laborum, assumenda nemo doloremque necessitatibus sed autem, cupiditate quidem
+									facilis eveniet similique non? Numquam pariatur illum optio asperiores.Lorem ipsum
+									dolor sit amet consectetur adipisicing elit. Quae, sequi voluptatibus! Vitae
+									laborum, assumenda nemo
+									doloremque necessitatibus sed autem, cupiditate quidem facilis eveniet similique
+									non? Numquam pariatur illum optio
+									asperiores.
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, sequi voluptatibus!
+									Vitae laborum, assumenda nemo
+									doloremque necessitatibus sed autem, cupiditate quidem facilis eveniet similique
+									non? Numquam pariatur illum optio
+									asperiores.
+
+								</div>
+								<div class="answer-footer mt-4">
+									<input class="form-check-input" type="checkbox" value="" id="checkCorrect2">
+									<label class="form-check-label" for="checkCorrect2">
+										Correect!
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="question-new-answer">
+						<form>
+							<textarea placeholder="Enter your answer here." class="form-control mt-4" id="inputTextarea" rows="4"></textarea>
+							<input type="submit" class="btn btn-primary mt-4" value="Answer" />
+						</form>
+					</div>
+
+				</div>
+				<div class="col-4">
+					<div class="popular-tags mt-4 w-100">
+						<h3>Popular Tags</h3>
+						<div class="sidebar-tags">
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">C++</a>
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">C</a>
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">Ruby</a>
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">python</a>
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">OpenGL</a>
+						</div>
+					</div>
+					<div class="best-members mt-4 w-100">
+						<h3>Best members</h3>
+						<div class="ms-4"> <a href="#">Mihail</a> </div>
+						<div class="ms-4"> <a href="#">Nikita</a></div>
+						<div class="ms-4"> <a href="#">Andrew</a></div>
+					</div>
+				</div>
+			</div>
+	</main>
+
+	<footer class="footer mt-auto py-3 bg-light">
+		<div class="container">
+			<span class="text-muted">Created by Mihail Latyshov</span>
+		</div>
+	</footer>
+</body>
+
+</html>

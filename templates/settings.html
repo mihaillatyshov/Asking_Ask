@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Settings</title>
+
+	<link href="../static/css/bootstrap.css" rel="stylesheet">
+	<link href="../static/css/style.css" rel="stylesheet">
+	<link href="../static/css/settings.css" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column h-100">
+	<header>
+		<nav class="navbar navbar-dark bg-dark fixed-top">
+			<div class="container">
+				<div
+					class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 w-100">
+					<a href="./index.html"
+						class="d-flex align-items-center col-12 col-md-3 text-white text-decoration-none">
+						<img src="../static/img/main.png" height="40px" alt="home" />
+						<span class="ms-4 navbar-brand">Asking Ask</span>
+					</a>
+
+					<div class="col-12 col-md-3 text-end">
+						<form class="d-flex" role="search">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+						</form>
+					</div>
+					<div class="col-12 col-md-auto justify-content-center">
+						<a href="./new_question.html"> <button class="btn btn-primary">ASK!!!</button></a>
+					</div>
+					<ul class="nav col-12 col-md-auto justify-content-center">
+						<li><a href="./login.html" class="nav-link px-2 text-white">LogIn</a></li>
+						<li><a href="./register.html" class="nav-link px-2 text-white">Register</a></li>
+					</ul>
+					<!-- 
+					<div class="nav col-12 col-md-auto justify-content-center">
+						<a href="#">
+							<img src="../static/img/avatar.png" height="40px" alt="Profile Icon">
+						</a>
+					</div>
+					-->
+
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<div class="container main-container">
+			<div class="row">
+				<div class="col-8">
+					<div class="page-name mt-2 row">
+						<h1 class="col-auto">Settings: Mihail</h1>
+					</div>
+					<form class="settings-form">
+						<div class="row">
+							<div class="col-auto settings-form-lable">
+								<label for="inputLogin" class="col-form-label">Login</label>
+							</div>
+							<div class="col">
+								<input type="text" id="inputLogin" class="form-control" value="microintex" />
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="col-auto settings-form-lable">
+								<label for="inputEmail" class="col-form-label">Email</label>
+							</div>
+							<div class="col">
+								<input type="email" id="inputEmail" class="form-control" value="lm@mail.ru" />
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="col-auto settings-form-lable">
+								<label for="inputNickName" class="col-form-label">NickName</label>
+							</div>
+							<div class="col">
+								<input type="text" id="inputNickName" class="form-control" value="LM" />
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="col-auto settings-form-lable">
+								Update avatar
+							</div>
+							<div class="col">
+								<div class="avatar">
+									<img src="../static/img/avatar-2.png" alt="avatar" />
+								</div>
+								<input class="form-control" type="file" id="formAvatarFile">
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="col-auto settings-form-lable">
+							</div>
+							<div class="col">
+								<input type="submit" class="btn btn-primary" value="Save" />
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-4">
+					<div class="popular-tags mt-4 w-100">
+						<h3>Popular Tags</h3>
+						<div class="sidebar-tags">
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">C++</a>
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">C</a>
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">Ruby</a>
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">python</a>
+							<a href="./question_by_tag.html" class="sidebar-tag mx-4">OpenGL</a>
+						</div>
+					</div>
+					<div class="best-members mt-4 w-100">
+						<h3>Best members</h3>
+						<div class="ms-4"> <a href="#">Mihail</a> </div>
+						<div class="ms-4"> <a href="#">Nikita</a></div>
+						<div class="ms-4"> <a href="#">Andrew</a></div>
+					</div>
+				</div>
+			</div>
+	</main>
+
+	<footer class="footer mt-auto py-3 bg-light">
+		<div class="container">
+			<span class="text-muted">Created by Mihail Latyshov</span>
+		</div>
+	</footer>
+</body>
+
+</html>
