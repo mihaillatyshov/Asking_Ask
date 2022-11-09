@@ -1,0 +1,26 @@
+{% extends 'inc/base.html' %} 
+
+{% load static %}
+
+{% block title %} {{ question.title }} {% endblock %} 
+{% block extrahead %} 
+    <link href="{% static 'css/questions.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/single-question.css' %}" rel="stylesheet">
+{% endblock %} 
+
+{% block content %}
+
+    {% include 'inc/question_item.html' with classname='question-full' %}
+    
+    {% for answer in answers %}
+        {% include 'inc/answer_item.html' %}
+    {% endfor %}
+   
+    <div class="question-new-answer">
+        <form>
+            <textarea placeholder="Enter your answer here." class="form-control mt-4" id="inputTextarea" rows="4"></textarea>
+            <input type="submit" class="btn btn-primary mt-4" value="Answer" />
+        </form>
+    </div>
+
+{% endblock %} 

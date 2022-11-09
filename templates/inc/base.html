@@ -1,27 +1,29 @@
 <!doctype html>
+
+{% load static %}
+
 <html lang="en" class="h-100">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>New Questions</title>
+	<title>{% block title %} Asking Ask {% endblock %}</title>
 
-	<link href="../static/css/bootstrap.css" rel="stylesheet">
-	<link href="../static/css/style.css" rel="stylesheet">
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% block extrahead %}{% endblock %}
 </head>
 
 <body class="d-flex flex-column h-100">
 	<header>
 		<nav class="navbar navbar-dark bg-dark fixed-top">
 			<div class="container">
-				<div
-					class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 w-100">
-					<a href="./index.html"
-						class="d-flex align-items-center col-12 col-md-3 text-white text-decoration-none">
-						<img src="../static/img/main.png" height="40px" alt="home" />
+				<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 w-100">
+					<a href="{% url 'index' %}" class="d-flex align-items-center col-12 col-md-3 text-white text-decoration-none">
+						<img src="{% static 'img/main.png' %}" height="40px" alt="home" />
 						<span class="ms-4 navbar-brand">Asking Ask</span>
-					</a>
+                    </a>
 
 					<div class="col-12 col-md-3 text-end">
 						<form class="d-flex" role="search">
@@ -30,16 +32,16 @@
 						</form>
 					</div>
 					<div class="col-12 col-md-auto justify-content-center">
-						<a href="./new_question.html"> <button class="btn btn-primary">ASK!!!</button></a>
+						<a href="{% url 'new_question' %}"> <button class="btn btn-primary">ASK!!!</button></a>
 					</div>
 					<ul class="nav col-12 col-md-auto justify-content-center">
-						<li><a href="./login.html" class="nav-link px-2 text-white">LogIn</a></li>
-						<li><a href="./register.html" class="nav-link px-2 text-white">Register</a></li>
+						<li><a href="{% url 'login' %}" class="nav-link px-2 text-white">LogIn</a></li>
+						<li><a href="{% url 'register' %}" class="nav-link px-2 text-white">Register</a></li>
 					</ul>
 					<!-- 
 					<div class="nav col-12 col-md-auto justify-content-center">
-						<a href="#">
-							<img src="../static/img/avatar.png" height="40px" alt="Profile Icon">
+						<a href="{% url 'settings' %}">
+							<img src="{% static 'img/avatar.png' %}" height="40px" alt="Profile Icon">
 						</a>
 					</div>
 					-->
@@ -53,20 +55,15 @@
 		<div class="container main-container">
 			<div class="row">
 				<div class="col-8">
-					<div class="page-name mt-2 row">
-						<h1 class="col-auto">New Questions</h1>
-						<a class="col-auto mt-auto mb-2" href="#">Hot Questions</a>
-					</div>
+                    {% block content %}{% endblock %}
 				</div>
 				<div class="col-4">
 					<div class="popular-tags mt-4 w-100">
 						<h3>Popular Tags</h3>
-						<div class="sidebar-tags">
-							<a href="./question_by_tag.html" class="sidebar-tag mx-4">C++</a>
-							<a href="./question_by_tag.html" class="sidebar-tag mx-4">C</a>
-							<a href="./question_by_tag.html" class="sidebar-tag mx-4">Ruby</a>
-							<a href="./question_by_tag.html" class="sidebar-tag mx-4">python</a>
-							<a href="./question_by_tag.html" class="sidebar-tag mx-4">OpenGL</a>
+						<div>
+                            {% for tag in tags %}
+                                {% include 'inc/tag_item.html' %}
+                            {% endfor %}
 						</div>
 					</div>
 					<div class="best-members mt-4 w-100">

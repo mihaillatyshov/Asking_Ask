@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="{{ classname }}">
+    <div class="row">
+        <div class="col-2">
+            <div class="avatar"><img src="{% static question.avatar %}" alt="avatar" /></div>
+            <div>
+                <input type="number" value="{{ question.likes }}" min="-1000000" max="1000000" step="1" />
+            </div>
+        </div>
+        <div class="col-10 question-block ps-5 pb-5">
+            <h3><a href="{% url 'question' id=question.id %}">{{ question.title }}</a></h3>
+            <div>{{ question.text }}</div>
+            <div class="row question-footer">
+                <div class="col-auto">
+                    <a href="#">answer ({{ question.answers_count }})</a>
+                </div>
+                <div class="col">
+                    Tags:
+                    {% for tag in question.tags %}
+                        {% include 'inc/tag_item.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

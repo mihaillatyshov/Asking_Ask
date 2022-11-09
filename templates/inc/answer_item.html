@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="question">
+    <div class="row">
+        <div class="col-2">
+            <div class="avatar">
+                <img src="{% static answer.avatar %}" alt="" />
+            </div>
+            <div>
+                <input type="number" value="{{answer.likes}}" min="-1000000" max="1000000" step="1">
+            </div>
+        </div>
+        <div class="col-10 question-block ps-5 pb-5">
+            <div>
+                {{ answer.text }}
+            </div>
+            <div class="answer-footer mt-4">
+                <input class="form-check-input" type="checkbox" value="" id="checkCorrect1" {% if answer.is_correct %} checked {% endif %}>
+                <label class="form-check-label" for="checkCorrect1">
+                    Correect!
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
