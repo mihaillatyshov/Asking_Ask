@@ -3,7 +3,7 @@
 <div class="{{ classname }}">
     <div class="row">
         <div class="col-2">
-            <div class="avatar"><img src="{% static question.avatar %}" alt="avatar" /></div>
+            <div class="avatar"><img src="{% static question.user.avatar %}" alt="avatar" /></div>
             <div>
                 <input type="number" value="{{ question.likes }}" min="-1000000" max="1000000" step="1" />
             </div>
@@ -12,8 +12,9 @@
             <h3><a href="{% url 'question' id=question.id %}">{{ question.title }}</a></h3>
             <div>{{ question.text }}</div>
             <div class="row question-footer">
+                {{ question.craetion_datetime }} {# TODO REMOVE #} 
                 <div class="col-auto">
-                    <a href="#">answer ({{ question.answers_count }})</a>
+                    <a href="#">answer ({{ question.answers }})</a>
                 </div>
                 <div class="col">
                     Tags:

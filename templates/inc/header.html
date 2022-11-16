@@ -1,0 +1,37 @@
+{% load static %}
+
+<header>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 w-100">
+                <a href="{% url 'index' %}" class="d-flex align-items-center col-12 col-md-3 text-white text-decoration-none">
+                    <img src="{% static 'img/main.png' %}" height="40px" alt="home" />
+                    <span class="ms-4 navbar-brand">Asking Ask</span>
+                </a>
+
+                <div class="col-12 col-md-3 text-end">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="col-12 col-md-auto justify-content-center">
+                    <a href="{% url 'new_question' %}"> <button class="btn btn-primary">ASK!!!</button></a>
+                </div>
+                <ul class="nav col-12 col-md-auto justify-content-center">
+                    <li><a href="{% url 'login' %}" class="nav-link px-2 text-white">LogIn</a></li>
+                    <li><a href="{% url 'register' %}" class="nav-link px-2 text-white">Register</a></li>
+                </ul>
+
+                <!-- 
+                <div class="nav col-12 col-md-auto justify-content-center">
+                    <a href="{% url 'settings' %}">
+                        <img src="{% static 'img/avatar.png' %}" height="40px" alt="Profile Icon">
+                    </a>
+                </div>
+                -->
+
+            </div>
+        </div>
+    </nav>
+</header>

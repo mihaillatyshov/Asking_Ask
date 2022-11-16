@@ -12,9 +12,11 @@
 
     {% include 'inc/question_item.html' with classname='question-full' %}
     
-    {% for answer in answers %}
+    {% for answer in page_obj.object_list %}
         {% include 'inc/answer_item.html' %}
     {% endfor %}
+
+    {% include 'inc/paginator.html' %}
    
     <div class="question-new-answer">
         <form>

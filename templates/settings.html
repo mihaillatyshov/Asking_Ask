@@ -11,7 +11,7 @@
 {% block content %}
 
     <div class="page-name mt-2 row">
-        <h1 class="col-auto">Settings: {{ profile.name }} </h1>
+        <h1 class="col-auto">Settings: {{ profile.user.username }} </h1>
     </div>
     <form class="settings-form">
         <div class="row">
@@ -19,7 +19,7 @@
                 <label for="inputLogin" class="col-form-label">Login</label>
             </div>
             <div class="col">
-                <input type="text" id="inputLogin" class="form-control" value="{{ profile.login }}" />
+                <input type="text" id="inputLogin" class="form-control" value="{{ profile.user.username }}" />
             </div>
         </div>
         <div class="row mt-4">
@@ -27,7 +27,7 @@
                 <label for="inputEmail" class="col-form-label">Email</label>
             </div>
             <div class="col">
-                <input type="email" id="inputEmail" class="form-control" value="{{ profile.email }}" />
+                <input type="email" id="inputEmail" class="form-control" value="{{ profile.user.email }}" />
             </div>
         </div>
         <div class="row mt-4">
@@ -35,7 +35,7 @@
                 <label for="inputNickName" class="col-form-label">NickName</label>
             </div>
             <div class="col">
-                <input type="text" id="inputNickName" class="form-control" value="{{ profile.nickname }}" />
+                <input type="text" id="inputNickName" class="form-control" value="{{ profile.user.first_name }}" />
             </div>
         </div>
         <div class="row mt-4">

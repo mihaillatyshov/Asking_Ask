@@ -11,8 +11,8 @@
 {% block content %}
 
     <div class="page-name mt-2 row">
-        <h1 class="col-auto">New Questions</h1>
-        <a href="{% url 'hot_questions' %}" class="col-auto px-2 mt-3"> Hot Questions</a>
+        <h1 class="col-auto">Hot Questions</h1>
+        <a href="{% url 'index' %}" class="col-auto px-2 mt-3"> New Questions</a>
     </div>
     
     {% for question in page_obj.object_list %}
