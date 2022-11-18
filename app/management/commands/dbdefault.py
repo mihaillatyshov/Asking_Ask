@@ -9,6 +9,11 @@ class Command(BaseCommand):
     help = "Add default values to db"
     maxLimit = 1000
     ratio = 100
+    userRatio = ratio
+    tagRatio = ratio
+    questionRatio = ratio * 10
+    answerRatio = ratio * 100
+    likeRatio = ratio * 200
 
     def add_arguments(self, parser) -> None:
         parser.add_argument("ratio", nargs=1, type=int)
@@ -25,93 +30,99 @@ class Command(BaseCommand):
     def CreateUser(self) -> models.QuerySet:
         self.BulkCreate(
             "User",
-            self.ratio,
+            self.userRatio,
             lambda s, e: User.objects.bulk_create([User(
+                id=x + 1,
                 username=f"LM{x}",
                 password="12345678",
             ) for x in range(s, e)]))
         return User.objects.all()
 
-    def CreateProfile(self, users: models.QuerySet) -> models.QuerySet:
+    def CreateProfile(self) -> models.QuerySet:
         self.BulkCreate(
             "Profile",
-            self.ratio,
+            self.userRatio,
             lambda s, e: Profile.objects.bulk_create([Profile(
+                id=x + 1,
                 avatar=f"img/avatar-{x % 4 + 1}.png",
-                user=users[x]
+                user_id=x + 1
             ) for x in range(s, e)]))
         return Profile.objects.all()
 
     def CreateTag(self) -> models.QuerySet:
         self.BulkCreate(
             "Tag",
-            self.ratio,
+            self.tagRatio,
             lambda s, e: Tag.objects.bulk_create([Tag(
+                id=x + 1,
                 name=f"C+={x}"
             ) for x in range(s, e)]))
         return Tag.objects.all()
 
-    def CreateQuestion(self, users: models.QuerySet, tags: models.QuerySet) -> models.QuerySet:
+    def CreateQuestion(self) -> models.QuerySet:
         self.BulkCreate(
             "Question",
-            self.ratio * 10,
+            self.questionRatio,
             lambda s, e: Question.objects.bulk_create([Question(
+                id=x + 1,
                 title=f"What is C++? {x}",
                 text=f"Hey guys, I want to learn C++!!! But I don't know what does it mean((( {x}",
-                user=users[x % len(users)],
+                user_id=x % self.userRatio + 1,
             ) for x in range(s, e)]))
 
-        questions = Question.objects.all()
         self.BulkCreate(
             "QuestionTag",
-            self.ratio * 10,
+            self.questionRatio,
             lambda s, e: QuestionTag.objects.bulk_create([QuestionTag(
-                question=questions[x],
-                tag=tags[x % len(tags)]
+                question_id=x + 1,
+                tag_id=x % self.tagRatio + 1
             ) for x in range(s, e)])
         )
         self.BulkCreate(
             "QuestionTag",
-            self.ratio * 10,
+            self.questionRatio,
             lambda s, e: QuestionTag.objects.bulk_create([QuestionTag(
-                question=questions[x],
-                tag=tags[(x + 1) % len(tags)]
+                question_id=x + 1,
+                tag_id=(x + 1) % self.tagRatio + 1
             ) for x in range(s, e)])
         )
 
         return Question.objects.all()
 
-    def CreateAnswer(self, users: models.QuerySet, questions: models.QuerySet) -> models.QuerySet:
+    def CreateAnswer(self) -> models.QuerySet:
         self.BulkCreate(
             "Answer",
-            self.ratio * 100,
+            self.answerRatio,
             lambda s, e: Answer.objects.bulk_create([Answer(
+                id=x + 1,
                 text=f"Just use python. lol {x}",
-                question=questions[x % len(questions)],
-                user=users[(x + 2) % len(users)],
+                question_id=x % self.questionRatio + 1,
+                user_id=(x + 2) % self.userRatio + 1,
                 correct=(x + 2) % 10 == 0
             ) for x in range(s, e)]))
         return Answer.objects.all()
 
-    def CreateQuestionLike(self, users: models.QuerySet, questions: models.QuerySet) -> models.QuerySet:
+    def CreateQuestionLike(self) -> models.QuerySet:
         self.BulkCreate(
             "QuestionLike",
-            self.ratio * 200,
+            self.likeRatio,
             lambda s, e: QuestionLike.objects.bulk_create([QuestionLike(
+                id=x + 1,
                 status=Like.LIKE if x % 10 else Like.DISLIKE,
-                user=users[(x + 4) % len(users)],
-                question=questions[(x + 40) % len(questions)]
+                user_id=(x + 4) % self.userRatio + 1,
+                question_id=(x + 40) % self.questionRatio + 1
             ) for x in range(s, e)]))
         return QuestionLike.objects.all()
 
-    def CreateAnswerLike(self, users: models.QuerySet, answers: models.QuerySet) -> models.QuerySet:
+    def CreateAnswerLike(self) -> models.QuerySet:
         self.BulkCreate(
             "AnswerLike",
-            self.ratio * 200,
+            self.likeRatio,
             lambda s, e: AnswerLike.objects.bulk_create([AnswerLike(
+                id=x + 1,
                 status=Like.LIKE if x % 10 else Like.DISLIKE,
-                user=users[(x + 4) % len(users)],
-                answer=answers[(x + 40) % len(answers)]
+                user_id=(x + 4) % self.userRatio + 1,
+                answer_id=(x + 40) % self.answerRatio + 1
             ) for x in range(s, e)]))
         return AnswerLike.objects.all()
 
@@ -119,23 +130,55 @@ class Command(BaseCommand):
         start_time = time.time()
         ratio = options["ratio"][0]
         self.ratio = options["ratio"][0]
+        self.userRatio = ratio
+        self.tagRatio = ratio
+        self.questionRatio = ratio * 10
+        self.answerRatio = ratio * 100
+        self.likeRatio = ratio * 200
 
         print("Ratio", ratio)
 
-        # QuestionTag.objects.all().delete()
-        # Tag.objects.all().delete()
-        # AnswerLike.objects.all().delete()
-        # Answer.objects.all().delete()
-        # QuestionLike.objects.all().delete()
-        # Question.objects.all().delete()
-        # Profile.objects.all().delete()
-        # User.objects.all().delete()
+        print("Del QuestionTag")
+        while QuestionTag.objects.all():
+            QuestionTag.objects.all().delete()
 
-        #users = self.CreateProfile(self.CreateUser())
-        #tags = self.CreateTag()
-        #questions = self.CreateQuestion(users, tags)
-        #answers = self.CreateAnswer(users, questions)
-        #questionLikes = self.CreateQuestionLike(users, questions)
-        #answerLikes = self.CreateAnswerLike(users, answers)
+        print("Del Tag")
+        while Tag.objects.all():
+            Tag.objects.all().delete()
+
+        print("Del AnswerLike")
+        while AnswerLike.objects.all():
+            AnswerLike.objects.all().delete()
+
+        print("Del QuestionLike")
+        while QuestionLike.objects.all():
+            QuestionLike.objects.all().delete()
+
+        print("Del Answer")
+        ansSize = Answer.objects.count()
+        for i in range(ansSize, 0, -self.maxLimit):
+            Answer.objects.filter(id__gt=i).delete()
+        Answer.objects.all().delete()
+        # while Answer.objects.all():
+
+        print("Del Question")
+        while Question.objects.all():
+            Question.objects.all().delete()
+
+        print("Del Profile")
+        while Profile.objects.all():
+            Profile.objects.all().delete()
+
+        print("Del User")
+        while User.objects.all():
+            User.objects.all().delete()
+
+        self.CreateUser()
+        self.CreateProfile()
+        self.CreateTag()
+        self.CreateQuestion()
+        self.CreateAnswer()
+        self.CreateQuestionLike()
+        self.CreateAnswerLike()
 
         print("--- %s seconds ---" % (time.time() - start_time))

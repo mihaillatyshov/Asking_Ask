@@ -77,6 +77,7 @@ WSGI_APPLICATION = 'askingask.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'CONN_MAX_AGE': 3600,
         'OPTIONS': {
             'read_default_file': str(BASE_DIR / 'mysql.cnf')
         }
