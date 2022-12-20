@@ -1,0 +1,9 @@
+{% load static %}
+
+<div class="like-field">
+    <div class="{{ itemtype }}_{{ item.id }}">
+        {{ item.likes }}
+    </div>
+    <img class="like-item" data-id="{{ item.id }}" data-itemtype="{{ itemtype }}" data-type="like"    src={% static 'img/like.png' %}    width="24px" alt="like"/>
+    <img class="like-item" data-id="{{ item.id }}" data-itemtype="{{ itemtype }}" data-type="dislike" src={% static 'img/dislike.png' %} width="24px" alt="dislike"/>
+</div>

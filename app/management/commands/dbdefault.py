@@ -44,7 +44,6 @@ class Command(BaseCommand):
             self.userRatio,
             lambda s, e: Profile.objects.bulk_create([Profile(
                 id=x + 1,
-                avatar=f"img/avatar-{x % 4 + 1}.png",
                 user_id=x + 1
             ) for x in range(s, e)]))
         return Profile.objects.all()

@@ -3,10 +3,8 @@
 <div class="{{ classname }}">
     <div class="row">
         <div class="col-2">
-            <div class="avatar"><img src="{% static question.user.avatar %}" alt="avatar" /></div>
-            <div>
-                <input type="number" value="{{ question.likes }}" min="-1000000" max="1000000" step="1" />
-            </div>
+            <div class="avatar"><img src="{{ question.user.avatar.url }}" alt="avatar" /></div>
+            {% include 'inc/like_field.html' with item=question itemtype="question" %}
         </div>
         <div class="col-10 question-block ps-5 pb-5">
             <h3><a href="{% url 'question' id=question.id %}">{{ question.title }}</a></h3>

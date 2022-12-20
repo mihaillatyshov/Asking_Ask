@@ -44,6 +44,14 @@
 	</main>
     
     {% include 'inc/footer.html' %}
+
+    <script> 
+        var csrftoken = '{{ csrf_token }}' 
+    </script>
+    <script src="{% static 'js/jquery-3.6.2.js' %}"> </script>
+    <script src="{% static 'js/likes.js' %}"> </script>
+    <script src="{% static 'js/correct.js' %}"> </script>
+
 </body>
 
 </html>

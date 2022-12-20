@@ -13,26 +13,23 @@
     <div class="page-name mt-2 row">
         <h1 class="col-auto">Log In</h1>
     </div>
-    <form class="auth-form">
-        <div class="text-danger">
-            Sorry, wrong password!
-        </div>
+    <form novalidate class="auth-form" action="/login" method="POST">
+        {% csrf_token %}
+        
+        <div class="text-danger"> {{ form.non_field_errors }} </div>
+
+        {% for field in form %}
         <div class="row mt-4">
             <div class="col-auto auth-form-lable">
-                <label for="inputLogin" class="col-form-label">Login</label>
+                <label for="{{ field.id_for_label }}" class="col-form-label">{{ field.label }}</label>
             </div>
             <div class="col">
-                <input type="text" id="inputLogin" class="form-control" placeholder="Enter your loging here"/>
+                {{ field }}
+                <div class="text-danger"> {{ field.errors }} </div>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-auto auth-form-lable">
-                <label for="inputPassword" class="col-form-label">Password</label>
-            </div>
-            <div class="col">
-                <input type="password" id="inputPassword" class="form-control" placeholder="********" />
-            </div>
-        </div>
+        {% endfor %}
+        <input type='text' name='continue' value="{{ continue }}" hidden/>
         <div class="row mt-4">
             <div class="col-auto auth-form-lable">
             </div>

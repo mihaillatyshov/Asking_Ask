@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Settings: {{ profile.name }} {% endblock %} 
+{% block title %} Settings {% endblock %} 
 
 {% block extrahead %} 
     <link href="{% static 'css/settings.css' %}" rel="stylesheet">
@@ -13,40 +13,29 @@
     <div class="page-name mt-2 row">
         <h1 class="col-auto">Settings: {{ profile.user.username }} </h1>
     </div>
-    <form class="settings-form">
-        <div class="row">
-            <div class="col-auto settings-form-lable">
-                <label for="inputLogin" class="col-form-label">Login</label>
-            </div>
-            <div class="col">
-                <input type="text" id="inputLogin" class="form-control" value="{{ profile.user.username }}" />
-            </div>
-        </div>
+    <form novalidate class="settings-form" action="/settings" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="text-danger"> {{ form.non_field_errors }} </div>
+
+        {% for field in form %}
         <div class="row mt-4">
             <div class="col-auto settings-form-lable">
-                <label for="inputEmail" class="col-form-label">Email</label>
+                <label for="{{ field.id_for_label }}" class="col-form-label">{{ field.label }}</label>
             </div>
             <div class="col">
-                <input type="email" id="inputEmail" class="form-control" value="{{ profile.user.email }}" />
+                {{ field }}
+                <div class="text-danger"> {{ field.errors }} </div>
             </div>
         </div>
+        {% endfor %}
         <div class="row mt-4">
             <div class="col-auto settings-form-lable">
-                <label for="inputNickName" class="col-form-label">NickName</label>
-            </div>
-            <div class="col">
-                <input type="text" id="inputNickName" class="form-control" value="{{ profile.user.first_name }}" />
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-auto settings-form-lable">
-                Update avatar
             </div>
             <div class="col">
                 <div class="avatar">
-                    <img src="{% static profile.avatar %}" alt="avatar" />
+                    <img src="{{ request.user.profile.avatar.url }}" height="40px" alt="avatar" />
                 </div>
-                <input class="form-control" type="file" id="formAvatarFile">
             </div>
         </div>
         <div class="row mt-4">

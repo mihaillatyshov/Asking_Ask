@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Login {% endblock %} 
+{% block title %} Register {% endblock %} 
 
 {% block extrahead %} 
     <link href="{% static 'css/login-register.css' %}" rel="stylesheet">
@@ -13,59 +13,23 @@
     <div class="page-name mt-2 row">
         <h1 class="col-auto">Registration</h1>
     </div>
-    <form class="auth-form">
-        <div class="text-danger">
-            Sorry, this email address allready registred!
-        </div>
+    <form novalidate class="auth-form" action"/register/" method="POST">
+        {% csrf_token %}
+        
+        <div class="text-danger"> {{ form.non_field_errors }} </div>
+
+        {% for field in form %}
         <div class="row mt-4">
             <div class="col-auto auth-form-lable">
-                <label for="inputLogin" class="col-form-label">Login</label>
+                <label for="{{ field.id_for_label }}" class="col-form-label">{{ field.label }}</label>
             </div>
             <div class="col">
-                <input type="text" id="inputLogin" class="form-control"
-                    placeholder="Enter your loging here" />
+                {{ field }}
+                <div class="text-danger"> {{ field.errors }} </div>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-auto auth-form-lable">
-                <label for="inputEmail" class="col-form-label">Email</label>
-            </div>
-            <div class="col">
-                <input type="email" id="inputEmail" class="form-control" placeholder="example@mail.ru" />
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-auto auth-form-lable">
-                <label for="inputNickName" class="col-form-label">NickName</label>
-            </div>
-            <div class="col">
-                <input type="text" id="inputNickName" class="form-control" placeholder="NickName" />
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-auto auth-form-lable">
-                Upload avatar
-            </div>
-            <div class="col">
-                <input class="form-control" type="file" id="formAvatarFile">
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-auto auth-form-lable">
-                <label for="inputPassword1" class="col-form-label">Password</label>
-            </div>
-            <div class="col">
-                <input type="password" id="inputPassword1" class="form-control" placeholder="********" />
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-auto auth-form-lable">
-                <label for="inputPassword2" class="col-form-label">Repeat password</label>
-            </div>
-            <div class="col">
-                <input type="password" id="inputPassword2" class="form-control" placeholder="********" />
-            </div>
-        </div>
+        {% endfor %}
+
         <div class="row mt-4">
             <div class="col-auto auth-form-lable">
             </div>

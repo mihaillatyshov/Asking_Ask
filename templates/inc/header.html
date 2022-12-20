@@ -18,18 +18,27 @@
                 <div class="col-12 col-md-auto justify-content-center">
                     <a href="{% url 'new_question' %}"> <button class="btn btn-primary">ASK!!!</button></a>
                 </div>
+
+                {% if request.user.is_authenticated %}
+                <div class="nav col-12 col-md-auto justify-content-end">
+                    <a href="{% url 'settings' %}">
+                        <img src="{{ request.user.profile.avatar.url }}" height="40px" alt="avatar" />
+                    </a>
+                    <a href="{% url 'settings' %}">
+                        <input type="button" class="btn btn-success ms-2 me-2" value="Settings" />
+                    </a>
+                    <form action="/logout" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger" value="Log Out" />
+                        <input type='text' name='continue' value="{{ request.path|urlencode }}" hidden/>
+                    </form>
+                </div>
+                {% else %}
                 <ul class="nav col-12 col-md-auto justify-content-center">
-                    <li><a href="{% url 'login' %}" class="nav-link px-2 text-white">LogIn</a></li>
+                    <li><a href="{% url 'login' %}?continue={{ request.path|urlencode }}" class="nav-link px-2 text-white">LogIn</a></li>
                     <li><a href="{% url 'register' %}" class="nav-link px-2 text-white">Register</a></li>
                 </ul>
-
-                <!-- 
-                <div class="nav col-12 col-md-auto justify-content-center">
-                    <a href="{% url 'settings' %}">
-                        <img src="{% static 'img/avatar.png' %}" height="40px" alt="Profile Icon">
-                    </a>
-                </div>
-                -->
+                {% endif %}
 
             </div>
         </div>

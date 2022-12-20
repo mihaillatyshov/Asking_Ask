@@ -13,31 +13,23 @@
     <div class="page-name mt-2 row">
         <h1 class="col-auto">New Question</h1>
     </div>
-    <form class="new-question-form">
-        <div class="row">
-            <div class="col-auto new-question-form-lable">
-                <label for="inputTitle" class="col-form-label">Title</label>
-            </div>
-            <div class="col">
-                <input type="text" id="inputTitle" class="form-control" />
-            </div>
-        </div>
+    <form novalidate class="new-question-form" action="/question/new" method="POST">
+        {% csrf_token %}
+        
+        <div class="text-danger"> {{ form.non_field_errors }} </div>
+
+        {% for field in form %}
         <div class="row mt-4">
             <div class="col-auto new-question-form-lable">
-                <label for="inputTextarea" class="col-form-label">Text</label>
+                <label for="{{ field.id_for_label }}" class="col-form-label">{{ field.label }}</label>
             </div>
             <div class="col">
-                <textarea id="inputTextarea" class="form-control" rows="8"></textarea>
+                {{ field }}
+                <div class="text-danger"> {{ field.errors }} </div>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-auto new-question-form-lable">
-                <label for="inputTags" class="col-form-label">Tags</label>
-            </div>
-            <div class="col">
-                <input type="text" id="inputTags" class="form-control" />
-            </div>
-        </div>
+        {% endfor %}
+
         <div class="row mt-4">
             <div class="col-auto new-question-form-lable"> </div>
             <div class="col">
